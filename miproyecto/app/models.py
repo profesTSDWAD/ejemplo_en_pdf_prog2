@@ -2,6 +2,20 @@ from django.db import models
 from django.core.validators import RegexValidator
 
 # Create your models here.
+
+class Role(models.Model):
+    name = models.CharField(
+        max_length=50,
+        unique=True,
+        help_text="nombre del rol."
+    )
+    description = models.TextField(
+        blank=True,
+        help_text="Descripción del rol."
+    )
+    def __str__(self) -> str:
+        return self.name
+
 class Users(models.Model):
     name = models.CharField(
         max_length=100,
@@ -20,17 +34,12 @@ class Users(models.Model):
     birth_date(
         help_text="Fecha de nacimiento"
     )
-    role = models.CharField(
-        max_length=10,
-        choices=[
-            ('admin', 'Administrador'), ('editor', 'Editor'),
-            ('cliente', 'Cliente')
-        ],
-        default='cliente',
-        help_text="Rol del usuario."
-    )
+    # originalmente era un CharField ahora es ForeignKey
+    role = models.ForeignKey(Role, on_delete=models.CASCADE,
+                             related_name='users')
+
     activo = models.BooleanField(default=True)
 
     def __str__(self) -> str:
         return f"{self.name} ({self.role})"
-    
+
