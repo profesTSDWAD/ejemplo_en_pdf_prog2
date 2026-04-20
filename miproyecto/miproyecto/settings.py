@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+
+from dotenv import load_dotenv
+#cargar variables de .env
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -78,9 +83,88 @@ WSGI_APPLICATION = 'miproyecto.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db_miproyecto.sqlite3',
+      'ENGINE': 'django.db.backends.sqlite3',
+      'NAME': BASE_DIR / 'db_miproyecto.sqlite3',
+    },
+    'db_sqlite3': {
+      # motor por defecto al crearse el proyecto
+      'ENGINE': 'django.db.backends.sqlite3',
+      #'NAME': BASE_DIR / 'db_miproyecto.sqlite3',
+      'NAME': BASE_DIR / os.getenv('NAMEdb_sqlite3'),
+    },
+    'bd_postgresql': {
+      """ configuración Standar para PostgreSQL
+      'ENGINE': 'django.db.backends.postgresql',
+      'NAME': 'app_db',
+      'USER': 'postgres',
+      'PASSWORD': 'tu_contraseña',
+      'HOST': 'localhost',
+      'PORT': '5432',
+      """
+      # uso de variables de entorno en .env
+      'ENGINE': 'django.db.backends.postgresql',
+      'NAME': os.getenv('NAME_BD_POSTGRESQL'),
+      'USER': os.getenv('USER_BD_POSTGRESQL'),
+      'PASSWORD': os.getenv('PASSWORD_BD_POSTGRESQL'),
+      'HOST': os.getenv('HOST_BD_POSTGRESQL'),
+      'PORT': os.getenv('PORT_BD_POSTGRESQL'),
+    },
+    'db_maria': {
+      """
+      'ENGINE': 'django.db.backends.mysql',
+      'NAME': 'app_db',
+      'USER': 'usuario',
+      'PASSWORD': 'tu_contraseña',
+      'HOST': 'localhost',
+      'PORT': '3306',
+      """
+      # uso de variables de entorno en .env
+      'ENGINE': 'django.db.backends.mysql',
+      'NAME': os.getenv('NAME_DB_MARIA'),
+      'USER': os.getenv('USER_DB_MARIA'),
+      'PASSWORD': os.getenv('PASSWORD_DB_MARIA'),
+      'HOST': os.getenv('HOST_DB_MARIA'),
+      'PORT': os.getenv('PORT_DB_MARIA'),
+    },
+    'db_mysql': {
+      """
+      'ENGINE': 'django.db.backends.mysql',
+      'NAME': 'app_db',
+      'USER': 'usuario',
+      'PASSWORD': 'tu_contraseña',
+      'HOST': 'localhost',
+      'PORT': '3306',
+      """
+      # uso de variables de entorno en .env
+      'ENGINE': 'django.db.backends.mysql',
+      'NAME': os.getenv('NAME_DB_MYSQL'),
+      'USER': os.getenv('USER_DB_MYSQL'),
+      'PASSWORD': os.getenv('PASSWORD_DB_MYSQL'),
+      'HOST': os.getenv('HOST_db_mysql'),
+      'PORT': os.getenv('PORT_db_mysql'),
+    },
+    'db_msserver': {
+      """
+      'ENGINE': 'mssql',
+      'NAME': 'app_db',
+      'USER': 'usuario',
+      'PASSWORD': 'tu_contraseña',
+      'HOST': 'localhost',
+      'PORT': '1433',
+      'OPTIONS': {
+        'driver': 'ODBC Driver 17 for SQL Server',
+      },
+      """
+      # uso de variables de entorno en .env
+      'ENGINE': 'mssql',
+      'NAME': os.getenv('NAME_DB_MSSERVER'),
+      'USER': os.getenv('USER_DB_MSSERVER'),
+      'PASSWORD': os.getenv('PASSWORD_DB_MSSERVER'),
+      'HOST': os.getenv('HOST_DB_MSSERVER'),
+      'PORT': os.getenv('PORT_DB_MSSERVER'),
+      'OPTIONS': os.getenv('OPTIONS_DB_MSSERVER'),
     }
+
 }
 
 
