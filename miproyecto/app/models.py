@@ -16,7 +16,7 @@ class Role(models.Model):
     def __str__(self) -> str:
         return self.name
 
-class Users(models.Model):
+class User(models.Model):
     name = models.CharField(
         max_length=100,
         help_text="Nombre completo del usuario."

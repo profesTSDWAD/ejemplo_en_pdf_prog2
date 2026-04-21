@@ -1,11 +1,12 @@
 # serializers.py debe ser creado explicitamente,
 # el framework no lo créa por defecto
 from rest_framework import serializers
-
+from .models import User, Role
 
 class RoleSerializer(serializers.ModelSerializer):
     # serializer anidado desde el lado "uno"
-    users = UserSerializer(many=True, read_only=True)
+    # debe usarse en uno u otro lado, en ambos genera ref. circular
+    #users = UserSerializer(many=True, read_only=True)
 
     class Meta:
         model = Role

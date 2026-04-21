@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from app.models import Users, Role
+from app.models import User, Role
 from app.serializers import UserSerializer, RoleSerializer
 
 
@@ -9,7 +9,7 @@ from app.serializers import UserSerializer, RoleSerializer
 class UserView(APIView):
 
     def get(self, request):
-        users = Users.objects.all()
+        users = User.objects.all()
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
 
