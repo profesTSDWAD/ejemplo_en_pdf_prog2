@@ -1,7 +1,7 @@
-form django.urls import path
+from django.urls import path
 
 # importación de las vistas
-form .views import hola_mundo
+from .views import hola_mundo
 
 # configuración de las rutas del módulo
 urlpatterns = [
