@@ -31,7 +31,7 @@ class Users(models.Model):
         validators=[RegexValidator(r'\d{7,8}$')],
         help_text="Número de documento (7 u 8 dígitos)."
     )
-    birth_date(
+    birth_date = models.DateField(
         help_text="Fecha de nacimiento"
     )
     # originalmente era un CharField ahora es ForeignKey
