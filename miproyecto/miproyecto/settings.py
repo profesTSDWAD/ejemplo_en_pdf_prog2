@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'saludo', # la app saludo debe registrarse.
-    'rest_framework', # registrar la biblioteca
+    'saludo',  # la app saludo debe registrarse.
+    'rest_framework',  # registrar la biblioteca
     'app'
 ]
 
@@ -90,7 +90,7 @@ DATABASES = {
       # motor por defecto al crearse el proyecto
       'ENGINE': 'django.db.backends.sqlite3',
       #'NAME': BASE_DIR / 'db_miproyecto.sqlite3',
-      'NAME': BASE_DIR / os.getenv('NAMEdb_sqlite3'),
+      'NAME': BASE_DIR / os.getenv('NAMEDB_SQLITE3'),
     },
     'bd_postgresql': {
       """ configuración Standar para PostgreSQL
