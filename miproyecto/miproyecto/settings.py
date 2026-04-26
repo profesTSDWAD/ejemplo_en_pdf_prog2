@@ -83,13 +83,17 @@ WSGI_APPLICATION = 'miproyecto.wsgi.application'
 
 DATABASES = {
     'default': {
-      'ENGINE': 'django.db.backends.sqlite3',
-      'NAME': BASE_DIR / 'db_miproyecto.sqlite3',
+      'ENGINE': 'django.db.backends.mysql',
+      'NAME': os.getenv('NAME_DB_MARIA'),
+      'USER': os.getenv('USER_DB_MARIA'),
+      'PASSWORD': os.getenv('PASSWORD_DB_MARIA'),
+      'HOST': os.getenv('HOST_DB_MARIA'),
+      'PORT': os.getenv('PORT_DB_MARIA'),
     },
     'db_sqlite3': {
       # motor por defecto al crearse el proyecto
       'ENGINE': 'django.db.backends.sqlite3',
-      #'NAME': BASE_DIR / 'db_miproyecto.sqlite3',
+      # 'NAME': BASE_DIR / 'db_miproyecto.sqlite3',
       'NAME': BASE_DIR / os.getenv('NAMEDB_SQLITE3'),
     },
     'bd_postgresql': {
@@ -190,9 +194,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'  # formato standar original
+LANGUAGE_CODE = 'es-ar'  # adecuacion al servidor y locale
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'  # formato standar original
+TIME_ZONE = 'America/Argentina/Cordoba'  # adecuacion al servidor y locale
 
 USE_I18N = True
 
